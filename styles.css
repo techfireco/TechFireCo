@@ -12,19 +12,6 @@ body {
     margin: 20px auto; /* Center the logo */
 }
 
-.whatsapp-update {
-    margin: 20px 0;
-}
-
-.whatsapp-update a {
-    text-decoration: none;
-    color: #000000; /* Change the color of the text */
-    font-weight: bold;
-    font-size: 20px;
-    display: inline-block;
-    margin: 0 auto; /* Center the link */
-}
-
 .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -42,6 +29,17 @@ body {
 }
 
 .grid-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.whatsapp-update {
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.whatsapp-update img {
     max-width: 100%;
     height: auto;
 }
