@@ -3,235 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Shein Discounts: Easy 4-Step Guide</title>
+    <title>Get Shein Discounts: Easy 4-Step Guide | TechFireCo</title>
     <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --bg-color: #f8f9fa;
+            --text-color: #2d3436;
+            --heading-color: #2d3436;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #c5b2ff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
-            text-align: center;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        .main-logo img {
-            height: 100px;
-            display: block;
-            margin: 20px auto;
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .blog-container {
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 40px 20px;
+        }
+
+        article {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            border: 2px solid #000;
-            margin-top: 20px;
-            margin-bottom: 40px;
-            text-align: left;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
         }
 
         .blog-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
         }
 
         .blog-header h1 {
-            color: #333;
-            font-size: 2.2rem;
+            color: var(--heading-color);
+            font-size: 2.5rem;
             margin-bottom: 10px;
+            line-height: 1.2;
         }
 
-        .blog-header .date {
-            color: #666;
+        .blog-meta {
+            color: #636e72;
+            font-size: 0.9rem;
             font-style: italic;
-            margin-bottom: 20px;
         }
 
         .intro-text {
-            background-color: #f8f6ff;
-            padding: 20px;
-            border-left: 4px solid #c5b2ff;
-            margin-bottom: 30px;
-            border-radius: 5px;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #4a4a4a;
         }
 
+        /* Step Cards */
         .step-container {
-            margin: 30px 0;
+            display: grid;
+            gap: 30px;
+            margin: 40px 0;
         }
 
         .step {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            padding: 25px;
             position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
 
         .step-number {
-            background-color: #c5b2ff;
-            color: white;
-            width: 30px;
-            height: 30px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            margin-right: 15px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
         }
 
         .step h3 {
-            display: inline-block;
-            color: #333;
-            margin: 0;
-            vertical-align: top;
+            margin: 0 0 10px 0;
+            color: var(--heading-color);
             font-size: 1.3rem;
         }
 
         .step p {
-            margin: 15px 0 5px 45px;
-            color: #555;
-            font-size: 1rem;
+            margin: 0;
+            color: #636e72;
         }
 
+        /* Highlight Box */
         .highlight-box {
-            background-color: #e8f4fd;
-            border: 1px solid #b3d9ff;
+            background: linear-gradient(to right, #e8f4fd, #f0f8ff);
+            border-left: 4px solid #0984e3;
             border-radius: 8px;
-            padding: 20px;
-            margin: 25px 0;
+            padding: 25px;
+            margin: 40px 0;
         }
 
         .highlight-box h4 {
-            color: #0066cc;
+            color: #0984e3;
             margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
 
-        .emoji {
-            font-size: 1.2em;
-        }
-
+        /* Tips Section */
         .tips-section {
-            background-color: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 30px 0;
+            background-color: #fff9db;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 40px 0;
         }
 
         .tips-section h4 {
-            color: #856404;
+            color: #d35400;
             margin-top: 0;
+            margin-bottom: 15px;
         }
 
         .tips-section ul {
-            margin-left: 20px;
-            color: #856404;
+            margin: 0;
+            padding-left: 20px;
         }
 
+        .tips-section li {
+            margin-bottom: 10px;
+            color: #5d4037;
+        }
+
+        /* Conclusion */
         .conclusion {
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #f1f2f6;
+            border-radius: var(--border-radius);
+        }
+
+        .conclusion h4 {
+            margin-top: 0;
+            color: var(--heading-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 40px 20px;
+            margin-top: 60px;
             text-align: center;
         }
 
-        .affiliate-disclaimer {
-            margin: 20px;
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #dfe6e9;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .disclaimer {
             font-size: 0.8rem;
-            color: #666;
-            text-align: center;
-            line-height: 1.6;
-            background-color: white;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+            color: #b2bec3;
+            max-width: 600px;
+            margin: 20px auto 0;
+            line-height: 1.5;
         }
 
         @media (max-width: 768px) {
-            .blog-container {
-                margin: 10px;
-                padding: 15px;
+            article {
+                padding: 20px;
             }
-            
+
             .blog-header h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
-            
-            .step h3 {
-                font-size: 1.1rem;
+
+            .nav-links {
+                display: none; /* Hide nav links on mobile for simplicity */
             }
         }
     </style>
 </head>
 <body>
-    <div class="blog-container">
-        <div class="blog-header">
-            <h1>🛍️ How to Get Amazing Shein Discounts: Simple 4-Step Guide</h1>
-            <div class="date">Published: Sept 6 2025 by Md Kashif Ali (TechFireCo)</div>
-        </div>
 
-        <div class="intro-text">
-            <p><strong>Want to save money on your favorite Shein items?</strong> You're in the right place! Getting exclusive discounts through Shein's SheinVersa program is easier than you think. Follow these super simple steps and start enjoying amazing deals on fashion, home decor, and more!</p>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">TechFireCo</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#">Deals</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="step-container">
-            <div class="step">
-                <span class="step-number">1</span>
-                <h3>Open Your Shein App & Navigate to Settings</h3>
-                <p>First things first - make sure you have the latest version of the Shein app installed on your phone. Once you're in the app, look for the <strong>Settings</strong> option (usually found in the menu or profile section). From there, you'll need to find and tap on <strong>"SheinVersa"</strong>.</p>
+    <main>
+        <article>
+            <div class="blog-header">
+                <h1>🛍️ How to Get Amazing Shein Discounts: Simple 4-Step Guide</h1>
+                <div class="blog-meta">Published: Sept 6 2025 by Md Kashif Ali (TechFireCo)</div>
             </div>
 
-            <div class="step">
-                <span class="step-number">2</span>
-                <h3>Connect Your Page (Authentic & Safe) <span class="emoji">🔒</span></h3>
-                <p>This is where you'll connect your social media page or profile. Don't worry - the process is completely <strong>authentic and safe</strong>. Shein uses secure verification methods to protect your information. Simply follow the prompts to link your account.</p>
+            <div class="intro-text">
+                <p><strong>Want to save money on your favorite Shein items?</strong> You're in the right place! Getting exclusive discounts through Shein's SheinVersa program is easier than you think. Follow these super simple steps and start enjoying amazing deals on fashion, home decor, and more!</p>
             </div>
 
-            <div class="step">
-                <span class="step-number">3</span>
-                <h3>Profile Review & Level Assignment <span class="emoji">📊</span></h3>
-                <p>Once connected, Shein's team will review your profile to determine your engagement level and audience reach. Based on this assessment, they'll assign you a specific level within their program. This usually happens pretty quickly!</p>
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Open Your Shein App & Navigate to Settings</h3>
+                    <p>First things first - make sure you have the latest version of the Shein app installed on your phone. Once you're in the app, look for the <strong>Settings</strong> option (usually found in the menu or profile section). From there, you'll need to find and tap on <strong>"SheinVersa"</strong>.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Connect Your Page (Authentic & Safe) 🔒</h3>
+                    <p>This is where you'll connect your social media page or profile. Don't worry - the process is completely <strong>authentic and safe</strong>. Shein uses secure verification methods to protect your information. Simply follow the prompts to link your account.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Profile Review & Level Assignment 📊</h3>
+                    <p>Once connected, Shein's team will review your profile to determine your engagement level and audience reach. Based on this assessment, they'll assign you a specific level within their program. This usually happens pretty quickly!</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Add Items, Apply Code & Enjoy! 🎉</h3>
+                    <p>Now comes the fun part! Browse through Shein's massive collection, add your favorite items to your cart, apply your personalized discount code, and enjoy the savings. It's that simple!</p>
+                </div>
             </div>
 
-            <div class="step">
-                <span class="step-number">4</span>
-                <h3>Add Items, Apply Code & Enjoy! <span class="emoji">🎉</span></h3>
-                <p>Now comes the fun part! Browse through Shein's massive collection, add your favorite items to your cart, apply your personalized discount code, and enjoy the savings. It's that simple!</p>
+            <div class="highlight-box">
+                <h4>💡 Why This Works</h4>
+                <p>Shein's SheinVersa program is designed to reward active users and content creators with exclusive discounts. By connecting your social presence, you're showing Shein that you're an engaged customer who might share your purchases with others - and they reward that with better deals!</p>
+            </div>
+
+            <div class="tips-section">
+                <h4>🎯 Pro Tips for Success</h4>
+                <ul>
+                    <li>Make sure your connected profile is active and authentic</li>
+                    <li>Complete your profile information thoroughly</li>
+                    <li>Be patient during the review process - it's worth the wait!</li>
+                    <li>Check back regularly for new discount opportunities</li>
+                    <li>Follow Shein's community guidelines for the best experience</li>
+                </ul>
+            </div>
+
+            <div class="conclusion">
+                <h4>🛒 Ready to Start Saving?</h4>
+                <p>These four simple steps are all it takes to unlock exclusive Shein discounts. The process is straightforward, secure, and definitely worth your time. Happy shopping, and enjoy those amazing deals!</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="disclaimer">
+                <p>&copy; 2025 TechFireCo. All rights reserved.</p>
             </div>
         </div>
+    </footer>
 
-        <div class="highlight-box">
-            <h4><span class="emoji">💡</span> Why This Works</h4>
-            <p>Shein's SheinVersa program is designed to reward active users and content creators with exclusive discounts. By connecting your social presence, you're showing Shein that you're an engaged customer who might share your purchases with others - and they reward that with better deals!</p>
-        </div>
-
-        <div class="tips-section">
-            <h4><span class="emoji">🎯</span> Pro Tips for Success</h4>
-            <ul>
-                <li>Make sure your connected profile is active and authentic</li>
-                <li>Complete your profile information thoroughly</li>
-                <li>Be patient during the review process - it's worth the wait!</li>
-                <li>Check back regularly for new discount opportunities</li>
-                <li>Follow Shein's community guidelines for the best experience</li>
-            </ul>
-        </div>
-
-        <div class="conclusion">
-            <h4><span class="emoji">🛒</span> Ready to Start Saving?</h4>
-            <p>These four simple steps are all it takes to unlock exclusive Shein discounts. The process is straightforward, secure, and definitely worth your time. Happy shopping, and enjoy those amazing deals!</p>
-        </div>
-    </div>
-
-    <div class="affiliate-disclaimer">
-        <p><strong>Disclaimer:</strong> This guide is provided for informational purposes. Discount availability and terms may vary. Please review Shein's current terms and conditions for the most up-to-date information about their SheinVersa program.</p>
-    </div>
 </body>
 </html>
