@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw Complete Setup Guide – techfireco</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: #252535;
+    --accent: #7c5cfc;
+    --accent2: #fc5c7d;
+    --accent3: #5cf9c5;
+    --text: #e8e8f0;
+    --muted: #8888aa;
+    --code-bg: #0d0d16;
+    --warn: #fcb85c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0d0d1a 0%, #1a0a2e 50%, #0a1a1f 100%);
+    padding: 60px 24px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,92,252,0.18) 0%, transparent 70%);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 30%, var(--accent) 70%, var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .by-line {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+  .lobster-emoji {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 16px;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* CTA CARD */
+  .cta-card {
+    background: linear-gradient(135deg, rgba(124,92,252,0.15), rgba(252,92,125,0.1));
+    border: 1px solid rgba(124,92,252,0.4);
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin: 28px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(252,92,125,0.15);
+  }
+  .cta-card .tag {
+    display: inline-block;
+    background: var(--accent2);
+    color: #fff;
+    font-size: 10px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .cta-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .cta-card p {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 11px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+
+  /* MAIN CONTENT */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* SECTION HEADERS */
+  .section {
+    margin: 36px 0 0;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 18px 20px;
+    background: var(--surface);
+    border-radius: 14px;
+    border-left: 3px solid var(--accent);
+  }
+  .section-num {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .section-header p {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent3);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p, .card li {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .card ul, .card ol {
+    padding-left: 18px;
+    margin-top: 8px;
+  }
+  .card li {
+    margin-bottom: 5px;
+  }
+  .card li::marker { color: var(--accent); }
+
+  /* CODE BLOCKS */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    overflow-x: auto;
+    position: relative;
+  }
+  .code-block .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .code-block code {
+    font-family: 'Space Mono', monospace;
+    font-size: 12.5px;
+    color: var(--accent3);
+    white-space: pre-wrap;
+    word-break: break-all;
+    line-height: 1.6;
+    display: block;
+  }
+
+  /* STEP ITEMS */
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding: 16px;
+    background: var(--surface);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .step-content p, .step-content li {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .step-content ul { padding-left: 16px; margin-top: 6px; }
+  .step-content li { margin-bottom: 4px; }
+  .step-content li::marker { color: var(--accent3); }
+
+  /* WARNING / TIP BOXES */
+  .tip-box {
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .tip-box.warn { background: rgba(252,184,92,0.1); border-left: 3px solid var(--warn); }
+  .tip-box.info { background: rgba(92,249,197,0.08); border-left: 3px solid var(--accent3); }
+  .tip-box.purple { background: rgba(124,92,252,0.1); border-left: 3px solid var(--accent); }
+  .tip-box .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .tip-box p { font-size: 13px; color: var(--muted); }
+  .tip-box strong { color: var(--text); }
+
+  /* CHECKLIST */
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '✓';
+    color: var(--accent3);
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* CHANNEL CARDS */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .channel-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+  .channel-item .emoji { font-size: 24px; display: block; margin-bottom: 6px; }
+  .channel-item span {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 32px 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 36px 24px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .footer .brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .footer p { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+  .footer .tag-line {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* INLINE HIGHLIGHT */
+  .hl { color: var(--accent); font-weight: 600; }
+  .hl2 { color: var(--accent3); font-weight: 600; }
+  .hl3 { color: var(--warn); font-weight: 600; }
+
+  /* OS TABS */
+  .os-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .os-tab {
+    background: var(--border);
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+  .os-tab.active {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* SKILL PILL */
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .pill {
+    background: rgba(92,249,197,0.1);
+    border: 1px solid rgba(92,249,197,0.25);
+    color: var(--accent3);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+
+  /* PROGRESS STEPS TOP */
+  .progress-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 20px 20px 0;
+    flex-wrap: wrap;
+  }
+  .progress-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .progress-dot.done { background: var(--accent3); }
+  .progress-dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="lobster-emoji">🦞</span>
+  <div class="hero-badge">Complete Setup Guide</div>
+  <h1>OpenClaw Setup:<br>Your AI Assistant, Right On Your Machine</h1>
+  <p>WhatsApp, Telegram, Discord — one AI across all platforms. A complete step-by-step guide for beginners.</p>
+  <div class="by-line">@techfireco</div>
+</div>
+
+<div class="container">
+
+<!-- INTRO CTA -->
+<div class="cta-card">
+  <div class="tag">⚡ Short on Time?</div>
+  <h3>We'll Handle the Entire Setup!</h3>
+  <p>If all of this feels overwhelming or you just don't have the time, don't worry. We offer a <strong>done-for-you OpenClaw setup service</strong> — we'll install, configure, and connect all your channels for you.</p>
+  <a class="cta-btn" href="https://www.instagram.com/techfireco/" target="_blank">📩 DM @techfireco on Instagram</a>
+  <a class="cta-btn" href="mailto:techfirebiz@gmail.com" style="margin-top:10px; background: linear-gradient(90deg, #5cf9c5, #7c5cfc);">✉️ Email Us</a>
+</div>
+
+<!-- WHAT IS OPENCLAW -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">00</div>
+    <div>
+      <h2>What is OpenClaw? 🤔</h2>
+      <p>Understand first, then set it up</p>
+    </div>
+  </div>
+  <div class="card">
+    <p>OpenClaw is an <span class="hl">open-source AI gateway</span> — in simple terms: a program that runs on your computer and turns apps like <span class="hl2">WhatsApp, Telegram, Discord, Slack</span> into your personal AI assistant.</p>
+    <p style="margin-top:10px;">It's literally like building your own <span class="hl">Jarvis from Iron Man</span> — except it comes in lobster form 🦞</p>
+    <ul style="margin-top:12px;">
+      <li>Chat with AI through your messaging apps</li>
+      <li>Get your computer to do tasks (open programs, web search)</li>
+      <li>It remembers your conversations — gets smarter over time</li>
+      <li>Your data stays on your computer — not on any external server</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PART 1: REQUIREMENTS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div>
+      <h2>What Do You Need First? ✅</h2>
+      <p>Check these before installing</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🖥️ Computer (Required!)</h3>
+    <div class="channel-grid" style="margin-top:8px;">
+      <div class="channel-item"><span class="emoji">🍎</span><span>Mac</span></div>
+      <div class="channel-item"><span class="emoji">🪟</span><span>Windows</span></div>
+      <div class="channel-item"><span class="emoji">🐧</span><span>Linux</span></div>
+      <div class="channel-item"><span class="emoji">❌</span><span>Phone Only? Won't Work</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📦 Node.js v22 or Above</h3>
+    <p>Node.js is a tool that runs JavaScript programs — OpenClaw is built on it.</p>
+    <div class="tip-box info">
+      <div class="icon">💡</div>
+      <p><strong>How to check:</strong> Type <code style="color:var(--accent3)">node --version</code> in your terminal. If you see <code>v22.x.x</code> or higher — you're good! If not, go to <strong>nodejs.org</strong> and download the LTS version.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🤖 AI Service Account (Pick One)</h3>
+    <div class="step" style="margin-bottom:10px;">
+      <div class="step-num">A</div>
+      <div class="step-content">
+        <h4>Anthropic (Claude) — Recommended ✨</h4>
+        <p>Claude Opus 4.5 is incredibly smart. Sign up at <span class="hl">anthropic.com</span> → Get your API key from the Console.</p>
+      </div>
+    </div>
+    <div class="step" style="margin-bottom:0;">
+      <div class="step-num">B</div>
+      <div class="step-content">
+        <h4>OpenAI (ChatGPT)</h4>
+        <p>This works great too. Sign up at <span class="hl">openai.com</span> → Get your key from platform.openai.com/api-keys.</p>
+      </div>
+    </div>
+    <div class="tip-box warn" style="margin-top:14px;">
+      <div class="icon">⚠️</div>
+      <p><strong>NEVER share your API Key!</strong> It's just like a password.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⏱️ Time: Approximately 30 Minutes</h3>
+    <p>It's not difficult — just follow the steps one by one. Once the setup is done, you won't need to do it again.</p>
+  </div>
+</div>
+
+<!-- PART 2: INSTALLATION -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div>
+      <h2>Install OpenClaw 🚀</h2>
+      <p>Just one command — and the magic happens</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h4>Open Terminal / Command Prompt</h4>
+      <ul>
+        <li><span class="hl2">Mac</span>: Command + Space → "Terminal" → Enter</li>
+        <li><span class="hl2">Windows</span>: Windows key → "cmd" or "PowerShell" → Enter</li>
+        <li><span class="hl2">Linux</span>: You already know how 😄</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h4>Run the Install Command</h4>
+      <p>Copy the command below — according to your OS:</p>
+      <div class="os-tabs">
+        <span class="os-tab active">Mac / Linux</span>
+      </div>
+      <div class="code-block">
+        <span class="label">Terminal</span>
+        <code>curl -fsSL https://openclaw.ai/install.sh | bash</code>
+      </div>
+      <div class="os-tabs">
+        <span class="os-tab active">Windows (PowerShell)</span>
+      </div>
+      <div class="code-block">
+        <span class="label">PowerShell</span>
+        <code>iwr -useb https://openclaw.ai/install.ps1 | iex</code>
+      </div>
+      <div class="tip-box info">
+        <div class="icon">ℹ️</div>
+        <p>This command downloads the installer from the internet and runs it directly. A lot of text will scroll by — that's normal, just wait 2–5 minutes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h4>Verify the Installation</h4>
+      <div class="code-block">
+        <span class="label">Terminal</span>
+        <code>openclaw --version</code>
+      </div>
+      <p>If you see a version number like <code style="color:var(--accent3)">v2025.x.x</code> — 🎉 It's installed! If not, close the terminal and reopen it, then try again.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA MID-PAGE -->
+<div class="cta-card">
+  <div class="tag">🛠️ Our Service</div>
+  <h3>Finding the Installation Complicated?</h3>
+  <p>No worries! We have a <strong>dedicated setup team</strong>. Just reach out — we'll handle your <strong>complete OpenClaw setup</strong> — installation, AI connection, WhatsApp/Telegram linking, everything. You just sit back and enjoy!</p>
+  <a class="cta-btn" href="https://www.instagram.com/techfireco/" target="_blank">📩 DM Us on Instagram</a>
+  <a class="cta-btn" href="mailto:techfirebiz@gmail.com" style="margin-top:10px; background: linear-gradient(90deg, #5cf9c5, #7c5cfc);">✉️ Email Us</a>
+</div>
+
+<!-- PART 3: ONBOARDING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div>
+      <h2>Onboarding Wizard 🧙</h2>
+      <p>Personalize your AI</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h4>Start the Wizard</h4>
+      <div class="code-block">
+        <span class="label">Terminal</span>
+        <code>openclaw onboard --install-daemon</code>
+      </div>
+      <div class="tip-box purple">
+        <div class="icon">💜</div>
+        <p><strong>--install-daemon</strong> means: OpenClaw will keep running silently in the background — even if you close the terminal, the AI stays ready!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h4>Q1: What Do You Want to Name Your Assistant?</h4>
+      <p>Type anything — "Jarvis", "Alfred", "Lobster Larry", or any fun name you like! Hit Enter.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h4>Q2: Select Your AI Provider</h4>
+      <p>Use the arrow keys to choose: <span class="hl2">Anthropic (Claude)</span> or <span class="hl">OpenAI</span>. Hit Enter.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h4>Q3: Enter Your API Key</h4>
+      <p>Paste the key you copied earlier. Nothing will appear on screen — that's normal. Hit Enter.</p>
+      <div class="tip-box warn">
+        <div class="icon">🔐</div>
+        <p><strong>How to get Anthropic API Key:</strong> console.anthropic.com → "API Keys" → "Create Key" → Copy</p>
+      </div>
+      <div class="tip-box warn">
+        <div class="icon">🔐</div>
+        <p><strong>How to get OpenAI API Key:</strong> platform.openai.com/api-keys → "Create new secret key" → Copy</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <h4>Q4: Select a Model</h4>
+      <p>Recommended options:</p>
+      <ul>
+        <li><span class="hl2">claude-opus-4.5</span> — Smartest, slightly expensive</li>
+        <li><span class="hl">claude-sonnet-4.5</span> — Smart and affordable</li>
+        <li><span class="hl">gpt-4</span> — OpenAI option</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-content">
+      <h4>Q5: Do You Want to Set Up Messaging Channels?</h4>
+      <p>Say <span class="hl2">Yes</span> — to connect apps like WhatsApp, Telegram. You can also add them later.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">7</div>
+    <div class="step-content">
+      <h4>Q6: Select Your Channels</h4>
+      <p>Use the space bar to pick the ones you want, then press Enter. Options: WhatsApp, Telegram, Discord, Slack, and more!</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">8</div>
+    <div class="step-content">
+      <h4>Q7: Install the Gateway Daemon?</h4>
+      <p><span class="hl2">Definitely say YES!</span> This keeps OpenClaw running 24/7 in the background.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PART 4: WHAT HAPPENED -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div>
+      <h2>What Was Created on Your PC? 📂</h2>
+      <p>Understanding what the setup did</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📁 .openclaw Folder</h3>
+    <p>A hidden folder has been created in your home directory:</p>
+    <ul style="margin-top:10px;">
+      <li><span class="hl2">Mac/Linux:</span> <code style="color:var(--accent3)">/home/username/.openclaw</code></li>
+      <li><span class="hl2">Windows:</span> <code style="color:var(--accent3)">C:\Users\username\.openclaw</code></li>
+    </ul>
+    <p style="margin-top:10px;">Inside it:</p>
+    <ul>
+      <li><code style="color:var(--accent)">openclaw.json</code> — all your settings</li>
+      <li><code style="color:var(--accent)">credentials/</code> — API keys stored securely</li>
+      <li><code style="color:var(--accent)">workspace/</code> — AI's workspace files</li>
+      <li><code style="color:var(--accent)">logs/</code> — history of everything that happened</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🔌 The Gateway — Control Center</h3>
+    <p>The Gateway is a background program that manages everything: AI communication, channel handling, running commands. It runs on <span class="hl2">port 18789</span>.</p>
+  </div>
+</div>
+
+<!-- PART 5: CHECK IF WORKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div>
+      <h2>Is Everything Working? 🔍</h2>
+      <p>Test it before moving ahead</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h4>Gateway Status Check</h4>
+      <div class="code-block">
+        <span class="label">Terminal</span>
+        <code>openclaw gateway status</code>
+      </div>
+      <p>You should see: <code style="color:var(--accent3)">✓ Gateway is running ✓ Port: 18789 ✓ Status: healthy</code></p>
+      <p style="margin-top:6px;">Don't see it? Run this:</p>
+      <div class="code-block">
+        <span class="label">Terminal</span>
+        <code>openclaw gateway start</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h4>Open the Dashboard</h4>
+      <div class="code-block">
+        <span class="label">Terminal</span>
+        <code>openclaw dashboard</code>
+      </div>
+      <p>A cool control panel will open in your browser! To go directly: <code style="color:var(--accent3)">http://127.0.0.1:18789/</code></p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h4>Send Your First Message! 🎉</h4>
+      <p>Type this in the dashboard chat box:</p>
+      <div class="code-block">
+        <span class="label">First Message</span>
+        <code>Hello! Can you introduce yourself?</code>
+      </div>
+      <p>If the AI replied — <span class="hl2">CONGRATULATIONS! Setup complete! 🎊</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- PART 6: MESSAGING CHANNELS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div>
+      <h2>Messaging Channels Setup 📱</h2>
+      <p>Connect WhatsApp, Telegram, Discord — and more</p>
+    </div>
+  </div>
+
+  <!-- WHATSAPP -->
+  <div class="card">
+    <h3>💬 WhatsApp Setup (A Bit Tricky, But Worth It!)</h3>
+
+    <div class="step" style="margin-top:12px;">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Login Command</h4>
+        <div class="code-block">
+          <span class="label">Terminal</span>
+          <code>openclaw channels login whatsapp</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Scan the QR Code</h4>
+        <p>A QR code will appear in the terminal. Now:</p>
+        <ul>
+          <li>Open WhatsApp on your phone</li>
+          <li>Three dots (menu) → "Linked Devices" → "Link a Device"</li>
+          <li>Scan the QR code from the terminal using your phone camera</li>
+          <li>Wait — it will connect!</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Approve Your Number</h4>
+        <p>For security, only approved numbers can chat with the AI:</p>
+        <div class="code-block">
+          <span class="label">Terminal</span>
+          <code>openclaw pairing approve whatsapp +91XXXXXXXXXX</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Test It</h4>
+        <p>Send yourself a WhatsApp message: <em>"Hey! Are you working?"</em> — Did the AI reply? 🎉</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TELEGRAM -->
+  <div class="card">
+    <h3>✈️ Telegram Setup (The Easiest One!)</h3>
+
+    <div class="step" style="margin-top:12px;">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Create a Bot via BotFather</h4>
+        <p>Open Telegram → Search for <code style="color:var(--accent3)">@BotFather</code> → Type <code>/newbot</code> → Give it a name → Copy the token (a string of numbers).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Add the Token to Config</h4>
+        <div class="code-block">
+          <span class="label">Terminal</span>
+          <code>openclaw config edit</code>
+        </div>
+        <p>In the file, add this under the <code>channels</code> section:</p>
+        <div class="code-block">
+          <span class="label">JSON Config</span>
+          <code>"telegram": {
+  "botToken": "paste-your-token-here"
+}</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Restart and Test</h4>
+        <div class="code-block">
+          <span class="label">Terminal</span>
+          <code>openclaw gateway restart</code>
+        </div>
+        <p>Find your bot on Telegram → Start it → Type "Hello!" → You'll get a reply! 🤖</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCORD -->
+  <div class="card">
+    <h3>🎮 Discord Setup (For the Gamers!)</h3>
+
+    <div class="step" style="margin-top:12px;">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Create a Bot on Discord Developer Portal</h4>
+        <p>Go to <span class="hl">discord.com/developers/applications</span> → "New Application" → Name it → "Bot" section → "Add Bot" → "Reset Token" → Copy the token.</p>
+        <p style="margin-top:8px;">Turn ON these 3 settings:</p>
+        <ul>
+          <li>Presence Intent</li>
+          <li>Server Members Intent</li>
+          <li>Message Content Intent</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Add to Config</h4>
+        <div class="code-block">
+          <span class="label">JSON Config</span>
+          <code>"discord": {
+  "token": "your-bot-token-here"
+}</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Invite the Bot to Your Server</h4>
+        <p>Developer Portal → OAuth2 → URL Generator → Check "bot" → Permissions: <em>Send Messages, Read Messages, Read Message History</em> → Copy the URL → Open it in your browser → Select your server → Authorize!</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Restart and Test</h4>
+        <div class="code-block">
+          <span class="label">Terminal</span>
+          <code>openclaw gateway restart</code>
+        </div>
+        <p>Message your bot in the Discord server — you'll get a reply!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📡 Even More Channels are Supported!</h3>
+    <div class="skill-pills">
+      <span class="pill">Slack</span>
+      <span class="pill">Google Chat</span>
+      <span class="pill">Signal</span>
+      <span class="pill">iMessage (Mac)</span>
+      <span class="pill">Matrix</span>
+      <span class="pill">And More!</span>
+    </div>
+    <p style="margin-top:12px; font-size:13px;">Each channel has its own setup — check the OpenClaw docs: <span class="hl2">docs.openclaw.ai</span></p>
+  </div>
+</div>
+
+<!-- CTA AGAIN -->
+<div class="cta-card">
+  <div class="tag">💼 Professional Service</div>
+  <h3>Channel Configuration Giving You a Headache?</h3>
+  <p>We understand — <strong>WhatsApp QR, Discord bot permissions, API tokens</strong> — it can all be confusing. Contact us and we'll handle the <strong>complete setup for you</strong> — one-time fee, lifetime use.</p>
+  <a class="cta-btn" href="https://www.instagram.com/techfireco/" target="_blank">🚀 DM @techfireco on Instagram</a>
+  <a class="cta-btn" href="mailto:techfirebiz@gmail.com" style="margin-top:10px; background: linear-gradient(90deg, #5cf9c5, #7c5cfc);">✉️ Email Us</a>
+</div>
+
+<!-- PART 7: SKILLS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div>
+      <h2>Make OpenClaw Even Smarter 🧠</h2>
+      <p>Install skills</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎯 What are Skills?</h3>
+    <p>Skills are like apps — install them and OpenClaw learns to do new things. Like web search, managing your calendar, controlling Spotify, organizing files, etc.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h4>Browse Available Skills</h4>
+      <p>Head to <span class="hl2">clawhub.ai</span> — you'll find hundreds of skills!</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h4>Install a Skill (Example: Web Search)</h4>
+      <div class="code-block">
+        <span class="label">Terminal</span>
+        <code>openclaw skills install web-search</code>
+      </div>
+      <p>Now ask the AI: <em>"Search for information about dinosaurs"</em> — and it will!</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⭐ Top Recommended Skills</h3>
+    <div class="skill-pills">
+      <span class="pill">calendar</span>
+      <span class="pill">weather</span>
+      <span class="pill">spotify</span>
+      <span class="pill">file-organizer</span>
+      <span class="pill">code-helper</span>
+      <span class="pill">web-search</span>
+    </div>
+  </div>
+</div>
+
+<!-- PART 8: ADVANCED -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <div>
+      <h2>Advanced Settings 🔧</h2>
+      <p>Feeling comfortable? Now customize it</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎭 Change the AI's Personality</h3>
+    <p>There's a <span class="hl2">SOUL.md</span> file that defines the AI's behavior:</p>
+    <div class="code-block">
+      <span class="label">Terminal</span>
+      <code>cd ~/.openclaw/workspace
+nano SOUL.md</code>
+    </div>
+    <p style="margin-top:8px;">Inside it, you can write things like:</p>
+    <div class="code-block">
+      <span class="label">SOUL.md</span>
+      <code>You are a helpful and funny AI assistant.
+You love making jokes and being encouraging.
+You sometimes bring up interesting tech facts.</code>
+    </div>
+    <p style="margin-top:8px;">Save it (Ctrl+X → Y → Enter), then:</p>
+    <div class="code-block">
+      <span class="label">Terminal</span>
+      <code>openclaw gateway restart</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💰 Set a Spending Limit</h3>
+    <p>To avoid overspending — add this to your config:</p>
+    <div class="code-block">
+      <span class="label">JSON Config</span>
+      <code>"limits": {
+  "maxTokensPerDay": 100000,
+  "alertWhenOver": 50000
+}</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🤖 Use Multiple AI Models</h3>
+    <p>Use a smart model for important tasks, and a cheaper model for smaller ones:</p>
+    <div class="code-block">
+      <span class="label">JSON Config</span>
+      <code>"models": {
+  "chat": "claude-opus-4.5",
+  "quick": "claude-sonnet-4.5",
+  "cheap": "gpt-3.5-turbo"
+}</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔄 Keep OpenClaw Running 24/7</h3>
+    <p>Even after your computer restarts:</p>
+    <div class="code-block">
+      <span class="label">Mac / Linux</span>
+      <code>openclaw gateway --install-daemon</code>
+    </div>
+    <div class="tip-box info">
+      <div class="icon">💡</div>
+      <p>On Windows, you'll need to set up a Windows Service — full instructions are available at <span class="hl2">docs.openclaw.ai</span>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PART 9: TROUBLESHOOTING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <div>
+      <h2>Having Problems? Let's Fix Them! 🛠️</h2>
+      <p>Common issues and their solutions</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>❌ Getting "Command not found"</h3>
+    <ul>
+      <li>Close the terminal and open a new one</li>
+      <li>Run the installer again</li>
+      <li>Manually add to PATH (ask someone experienced for help)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>❌ "Gateway won't start"</h3>
+    <p>Another program might be using port 18789. Try this:</p>
+    <div class="code-block">
+      <span class="label">Terminal</span>
+      <code>openclaw gateway --port 18790</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>❌ "AI is not responding"</h3>
+    <ul>
+      <li>Is your API key correct? Double-check it</li>
+      <li>Do you have credits in your account? Check it</li>
+      <li>Check the logs to see what's happening:</li>
+    </ul>
+    <div class="code-block">
+      <span class="label">Terminal</span>
+      <code>openclaw logs</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>❌ "WhatsApp keeps disconnecting"</h3>
+    <ul>
+      <li>Keep your phone connected to the internet</li>
+      <li>Don't manually log out from WhatsApp</li>
+      <li>Re-scan the QR code if needed</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PART 10: COOL THINGS TO DO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div>
+      <h2>Cool Things to Do with OpenClaw 🌟</h2>
+      <p>Ideas to get started</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <ul class="checklist">
+      <li>Get photosynthesis explained in simple language</li>
+      <li>"Remind me about the science project tomorrow at 4 PM" — set a reminder</li>
+      <li>Learn how to build a simple HTML website</li>
+      <li>Research interesting facts about Ancient Egypt</li>
+      <li>Get help writing a story — "A robot that wanted to become a chef"</li>
+      <li>Understand quadratic equations step by step</li>
+      <li>Practice a conversation in Spanish</li>
+      <li>Have a fun chat: "If you could be any animal other than a lobster, which would you pick?"</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PART 11: SAFETY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div>
+      <h2>Safety Tips 🔒</h2>
+      <p>Important things to keep in mind</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <ul class="checklist">
+      <li>NEVER share your API key on social media — it's like a password</li>
+      <li>Don't share your home address, phone number, or card details with the AI</li>
+      <li>Keep the pairing system ON — so only approved numbers can chat with the AI</li>
+      <li>Always double-check important information from the AI — it can make mistakes sometimes</li>
+      <li>Don't use it to copy homework — <strong>use it to learn!</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- RESOURCES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <div>
+      <h2>Want to Learn More? 📚</h2>
+      <p>Official resources</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <ul class="checklist">
+      <li><span class="hl2">docs.openclaw.ai</span> — Official detailed documentation</li>
+      <li><span class="hl2">github.com/openclaw/openclaw</span> — View the source code</li>
+      <li><span class="hl2">clawhub.ai</span> — Discover hundreds of skills</li>
+      <li>Advanced projects: build your own skills, set up automations, try multi-agent systems</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FINAL CTA -->
+<div class="cta-card" style="margin-bottom:0;">
+  <div class="tag">🎯 @techfireco Service</div>
+  <h3>Complete OpenClaw Setup — Leave It to Us!</h3>
+  <p>Finished reading the guide? If you still find the setup difficult — or simply don't have the time — we offer a <strong>done-for-you service</strong>.<br><br>
+  ✅ Installation &nbsp;✅ AI Connection &nbsp;✅ All Channels &nbsp;✅ Skills &nbsp;✅ Personality Setup<br><br>
+  <strong>One-time setup, lifetime use. DM us!</strong></p>
+  <a class="cta-btn" href="https://www.instagram.com/techfireco/" target="_blank">📩 DM @techfireco on Instagram</a>
+  <a class="cta-btn" href="mailto:techfirebiz@gmail.com" style="margin-top:10px; background: linear-gradient(90deg, #5cf9c5, #7c5cfc);">✉️ Email Us</a>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="brand">techfireco</div>
+  <p>Tech content that actually makes sense 🔥<br>Follow us for more guides like this!</p>
+  <div class="tag-line">@techfireco • Instagram • WhatsApp Channel</div>
+</div>
+
+</body>
+</html>
