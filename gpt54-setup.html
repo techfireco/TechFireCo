@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPT-5.4 Setup Guide – techfireco</title>
+<meta name="description" content="Complete GPT-5.4 setup guide: ChatGPT Business, OpenCode integration, and OmniRoute configuration by TechFireCo.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+:root{--blue:#0066cc;--blue-hover:#0071e3;--blue-dark:#2997ff;--ink:#1d1d1f;--muted:#86868b;--canvas:#fff;--parch:#f5f5f7;--tile1:#1d1d1f;--tile2:#2a2a2c;--warn:#ff9500;--green:#34c759;--red:#ff3b30}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--canvas);color:var(--ink);font-size:17px;line-height:1.47;letter-spacing:-.374px}
+
+/* HEADER */
+.site-header{background:#000;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:100}
+.site-header .logo{color:#fff;font-weight:800;font-size:14px;letter-spacing:-.5px;text-decoration:none}
+.site-header nav a{color:#f5f5f7;font-size:12px;text-decoration:none;margin-left:20px;opacity:.8;transition:opacity .2s}
+.site-header nav a:hover{opacity:1}
+
+/* HERO */
+.hero{background:var(--tile1);padding:80px 24px 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,204,.15),transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:9999px;margin-bottom:20px}
+.hero h1{font-size:clamp(32px,7vw,56px);font-weight:800;line-height:1.07;letter-spacing:-.5px;color:#fff;margin-bottom:16px}
+.hero h1 span{background:linear-gradient(135deg,#fff 30%,var(--blue-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--muted);font-size:17px;max-width:520px;margin:0 auto 24px}
+.hero .byline{color:var(--blue-dark);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px}
+
+/* CONTAINER */
+.container{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* SECTION */
+.section{margin-top:48px}
+.section-head{display:flex;align-items:center;gap:14px;padding:20px;background:var(--parch);border-radius:16px;margin-bottom:20px}
+.section-num{width:36px;height:36px;background:var(--blue);color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.section-head h2{font-size:20px;font-weight:700;letter-spacing:-.3px}
+.section-head .sub{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* STEP */
+.step{display:flex;gap:14px;padding:18px;background:var(--parch);border-radius:14px;margin-bottom:14px}
+.step-n{width:28px;height:28px;background:var(--blue);color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.step p,.step li{font-size:14px;color:var(--muted);line-height:1.65}
+.step ul{padding-left:16px;margin-top:6px}
+.step li{margin-bottom:4px}
+
+/* CODE */
+.code{background:var(--tile1);border-radius:10px;padding:14px 16px;margin:10px 0;overflow-x:auto}
+.code .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue-dark);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.code code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--green);white-space:pre-wrap;word-break:break-all;line-height:1.6;display:block}
+
+/* CARD */
+.card{background:var(--parch);border-radius:16px;padding:22px;margin-bottom:14px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card p,.card li{font-size:14px;color:var(--muted);line-height:1.7}
+.card ul,.card ol{padding-left:18px;margin-top:8px}
+.card li{margin-bottom:5px}
+
+/* TIP/WARN */
+.tip{border-radius:12px;padding:14px 16px;margin:12px 0;display:flex;gap:10px;align-items:flex-start}
+.tip.warn{background:rgba(255,149,0,.08);border-left:3px solid var(--warn)}
+.tip.info{background:rgba(0,102,204,.06);border-left:3px solid var(--blue)}
+.tip .ico{font-size:18px;flex-shrink:0}
+.tip p{font-size:13px;color:var(--muted)}
+.tip strong{color:var(--ink)}
+
+/* CTA */
+.cta{background:var(--tile1);border-radius:20px;padding:28px 22px;margin:32px 0;text-align:center}
+.cta .tag{display:inline-block;background:var(--blue);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;padding:4px 12px;border-radius:9999px;margin-bottom:12px;text-transform:uppercase}
+.cta h3{color:#fff;font-size:18px;font-weight:700;margin-bottom:8px}
+.cta p{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--blue);color:#fff;font-weight:600;font-size:14px;padding:12px 26px;border-radius:9999px;text-decoration:none;margin:4px;transition:transform .15s}
+.cta-btn:active{transform:scale(.95)}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill{background:rgba(0,102,204,.08);border:1px solid rgba(0,102,204,.2);color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 12px;border-radius:9999px}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,#e0e0e0,transparent);margin:40px 0}
+
+/* FOOTER */
+.site-footer{background:var(--parch);border-top:1px solid #e0e0e0;padding:40px 24px;text-align:center;margin-top:56px}
+.site-footer .brand{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.site-footer p{font-size:13px;color:var(--muted);margin-bottom:12px}
+.site-footer .tagline{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:2px;text-transform:uppercase}
+.site-footer .links{margin-top:16px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.site-footer .links a{color:var(--blue);font-size:12px;text-decoration:none}
+
+.hl{color:var(--blue);font-weight:600}
+.hl2{color:var(--green);font-weight:600}
+
+@media(max-width:600px){
+.hero{padding:56px 18px 40px}
+.section-head,.step,.card{padding:16px}
+.site-header nav a{font-size:11px;margin-left:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+<a href="/" class="logo">techfireco</a>
+<nav>
+<a href="/">Home</a>
+<a href="https://www.instagram.com/techfireco/" target="_blank">Instagram</a>
+<a href="https://wa.openinapp.link/w4nm0" target="_blank">WhatsApp</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-badge">Complete Setup Guide</div>
+<h1><span>GPT-5.4</span><br>Setup Guide</h1>
+<p>ChatGPT Business + OpenCode + OmniRoute — everything you need, step by step.</p>
+<div class="byline">@techfireco</div>
+</div>
+
+<div class="container">
+
+<!-- CTA TOP -->
+<div class="cta">
+<div class="tag">⚡ Need Help?</div>
+<h3>We'll Handle the Entire Setup!</h3>
+<p>Don't want to deal with configs and terminals? We offer a <strong style="color:#fff">done-for-you setup service</strong> — we'll configure everything for you.</p>
+<a class="cta-btn" href="https://www.instagram.com/techfireco/" target="_blank">📩 DM @techfireco</a>
+<a class="cta-btn" href="mailto:techfirebiz@gmail.com" style="background:var(--green)">✉️ Email Us</a>
+</div>
+
+<!-- PART 1 -->
+<div class="section">
+<div class="section-head">
+<div class="section-num">01</div>
+<div><h2>ChatGPT Business Account 💼</h2><p class="sub">Set up a new business trial</p></div>
+</div>
+
+<div class="step">
+<div class="step-n">1</div>
+<div>
+<h4>Create a NEW Account</h4>
+<p>Go to <span class="hl">chatgpt.com</span> and create a <strong>brand new account</strong>. The promo doesn't apply to existing ones.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">2</div>
+<div>
+<h4>Email Matters ✉️</h4>
+<p>Gmail / iCloud / Proton usually <strong>won't</strong> get you the offer. Use a <span class="hl">corporate address</span> or <span class="hl">custom-domain email</span> instead.</p>
+<div class="tip info">
+<div class="ico">💡</div>
+<p>Some people get through with <strong>@engineer.com</strong>, <strong>@consultant.com</strong>, and similar domains from mail.com — they look like professional addresses.</p>
+</div>
+<div class="tip info">
+<div class="ico">📩</div>
+<p><strong>Need a custom email?</strong> I personally set up custom emails with a 100% pass rate. DM the channel and we'll sort it out.</p>
+</div>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">3</div>
+<div>
+<h4>Activate Business Trial</h4>
+<p>After signup, you'll see the <span class="hl">Business trial banner</span> at the top. Click it.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">4</div>
+<div>
+<h4>Pick the Business Plan</h4>
+<p>Select the <strong>Business plan</strong> (better limits than Plus/Team) and enter your card.</p>
+<div class="tip warn">
+<div class="ico">⚠️</div>
+<p><strong>$25 per seat / month</strong> after the free trial. If you don't plan to pay, set a reminder and cancel in <strong>Settings → Billing</strong> before it ends.</p>
+</div>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">5</div>
+<div>
+<h4>Invite Your Team</h4>
+<p>Open the workspace → <span class="hl">Members</span> → invite up to <strong>5 people</strong>. Each gets their own daily/weekly/monthly quota.</p>
+</div>
+</div>
+</div>
+
+<!-- PART 2 -->
+<div class="section">
+<div class="section-head">
+<div class="section-num">02</div>
+<div><h2>OpenCode Integration 🔗</h2><p class="sub">Open-source coding agent for terminal / IDE / desktop</p></div>
+</div>
+
+<div class="card">
+<h3>🤖 What is OpenCode?</h3>
+<p>OpenCode is an open-source coding agent that works in your terminal, IDE, or desktop. Connect it to your ChatGPT Business account for full model access.</p>
+</div>
+
+<div class="step">
+<div class="step-n">1</div>
+<div>
+<h4>Download & Install</h4>
+<p>Download from <span class="hl">opencode.ai</span> and install.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">2</div>
+<div>
+<h4>Connect OpenAI</h4>
+<p>Open OpenCode → <strong>Settings → Providers → OpenAI → Connect</strong>.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">3</div>
+<div>
+<h4>Login</h4>
+<p>A browser window opens — log in with your <span class="hl">ChatGPT Business account</span>. Done.</p>
+<div class="tip info">
+<div class="ico">✅</div>
+<p>You now have access to <strong>all current OpenAI models</strong> inside OpenCode.</p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h3>📊 Track Your Usage</h3>
+<p>Monitor usage at:</p>
+<div class="code">
+<span class="lbl">URL</span>
+<code>https://chatgpt.com/codex/cloud/settings/analytics#usage</code>
+</div>
+</div>
+</div>
+
+<!-- CTA MID -->
+<div class="cta">
+<div class="tag">🛠️ Service</div>
+<h3>Finding the Setup Complicated?</h3>
+<p>No worries! We have a <strong style="color:#fff">dedicated setup team</strong>. Reach out — we'll handle your complete setup.</p>
+<a class="cta-btn" href="https://www.instagram.com/techfireco/" target="_blank">📩 DM Us on Instagram</a>
+</div>
+
+<!-- PART 3 -->
+<div class="section">
+<div class="section-head">
+<div class="section-num">03</div>
+<div><h2>OmniRoute ⚡</h2><p class="sub">Auto-switch accounts when one hits its limit</p></div>
+</div>
+
+<div class="card">
+<h3>🔄 What is OmniRoute?</h3>
+<p>OmniRoute lets you keep <strong>multiple accounts in one place</strong> and auto-switch between them when one hits its limit. Works with OpenCode and Claude Code.</p>
+<p style="margin-top:8px">Repo: <span class="hl">github.com/diegosouzapw/OmniRoute</span></p>
+</div>
+
+<div class="step">
+<div class="step-n">1</div>
+<div>
+<h4>Install Node.js v22.22.2</h4>
+<p>Download from <span class="hl">nodejs.org/en/download</span></p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">2</div>
+<div>
+<h4>Install OmniRoute</h4>
+<div class="code">
+<span class="lbl">Terminal</span>
+<code>npm install -g omniroute@3.5.3</code>
+</div>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">3</div>
+<div>
+<h4>Set a Password</h4>
+<div class="code">
+<span class="lbl">Windows (CMD)</span>
+<code>set INITIAL_PASSWORD=YOUR_PASSWORD</code>
+</div>
+<div class="code">
+<span class="lbl">macOS / Linux</span>
+<code>export INITIAL_PASSWORD=YOUR_PASSWORD</code>
+</div>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">4</div>
+<div>
+<h4>Run OmniRoute</h4>
+<div class="code">
+<span class="lbl">Terminal</span>
+<code>omniroute</code>
+</div>
+<p>The OmniRoute dashboard opens locally in your browser. Log in with the password from step 3.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">5</div>
+<div>
+<h4>Dashboard Setup</h4>
+<ul>
+<li><strong>Providers</strong> → OpenAI Codex → connect your OpenAI account</li>
+<li><strong>API Manager</strong> → create an API key (copy it)</li>
+<li><strong>Endpoints</strong> → copy the localhost URL</li>
+</ul>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">6</div>
+<div>
+<h4>Connect to OpenCode</h4>
+<p>Back in OpenCode → <strong>Settings → Providers → Custom</strong>:</p>
+<ul>
+<li>Paste the <span class="hl">localhost URL</span> as the endpoint</li>
+<li>Paste the <span class="hl">API key</span></li>
+<li>Add the models you want (copy from the OmniRoute panel)</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h3>🎉 You're Done!</h3>
+<p>ChatGPT Business runs inside OpenCode, and OmniRoute juggles accounts so you stop seeing <strong>"rate limit exceeded"</strong> mid-build.</p>
+<div class="pills">
+<span class="pill">ChatGPT Business</span>
+<span class="pill">OpenCode</span>
+<span class="pill">OmniRoute</span>
+<span class="pill">No Rate Limits</span>
+</div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FINAL CTA -->
+<div class="cta" style="margin-bottom:0">
+<div class="tag">🎯 @techfireco Service</div>
+<h3>Complete GPT-5.4 Setup — Leave It to Us!</h3>
+<p>Finished reading? If you still find the setup difficult — or simply don't have the time — we offer a <strong style="color:#fff">done-for-you service</strong>.<br><br>
+✅ Business Account &nbsp;✅ OpenCode &nbsp;✅ OmniRoute &nbsp;✅ Full Config<br><br>
+<strong style="color:#fff">One-time setup, lifetime use. DM us!</strong></p>
+<a class="cta-btn" href="https://www.instagram.com/techfireco/" target="_blank">📩 DM @techfireco on Instagram</a>
+<a class="cta-btn" href="mailto:techfirebiz@gmail.com" style="background:var(--green)">✉️ Email Us</a>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+<div class="brand">techfireco</div>
+<p>Tech content that actually makes sense 🔥<br>Follow us for more guides like this!</p>
+<div class="tagline">@techfireco • Instagram • WhatsApp Channel</div>
+<div class="links">
+<a href="/">Home</a>
+<a href="https://www.instagram.com/techfireco/" target="_blank">Instagram</a>
+<a href="https://wa.openinapp.link/w4nm0" target="_blank">WhatsApp</a>
+<a href="mailto:techfirebiz@gmail.com">Email</a>
+</div>
+<p style="margin-top:16px;font-size:11px;color:#86868b">© 2026 TechFireCo. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
