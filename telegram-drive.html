@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Get Unlimited Telegram Storage – techfireco</title>
+<meta name="description" content="Turn your Telegram into unlimited cloud storage with Telegram Drive. Free, open-source app for Windows, Mac, and Linux. Step-by-step guide by TechFireCo.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+:root{--blue:#0066cc;--blue-hover:#0071e3;--blue-dark:#2997ff;--ink:#1d1d1f;--muted:#86868b;--canvas:#fff;--parch:#f5f5f7;--tile1:#1d1d1f;--tile2:#2a2a2c;--warn:#ff9500;--green:#34c759;--red:#ff3b30;--tg:#2AABEE}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--canvas);color:var(--ink);font-size:17px;line-height:1.47;letter-spacing:-.374px}
+
+/* HEADER */
+.site-header{background:#000;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:100}
+.site-header .logo{color:#fff;font-weight:800;font-size:14px;letter-spacing:-.5px;text-decoration:none}
+.site-header nav a{color:#f5f5f7;font-size:12px;text-decoration:none;margin-left:20px;opacity:.8;transition:opacity .2s}
+.site-header nav a:hover{opacity:1}
+
+/* HERO */
+.hero{background:var(--tile1);padding:80px 24px 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(42,171,238,.15),transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;background:var(--tg);color:#fff;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:9999px;margin-bottom:20px}
+.hero h1{font-size:clamp(32px,7vw,56px);font-weight:800;line-height:1.07;letter-spacing:-.5px;color:#fff;margin-bottom:16px}
+.hero h1 span{background:linear-gradient(135deg,#fff 30%,var(--tg));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--muted);font-size:17px;max-width:520px;margin:0 auto 24px}
+.hero .byline{color:var(--blue-dark);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px}
+
+/* CONTAINER */
+.container{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* SECTION */
+.section{margin-top:48px}
+.section-head{display:flex;align-items:center;gap:14px;padding:20px;background:var(--parch);border-radius:16px;margin-bottom:20px}
+.section-num{width:36px;height:36px;background:var(--tg);color:#fff;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.section-head h2{font-size:20px;font-weight:700;letter-spacing:-.3px}
+.section-head .sub{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* STEP */
+.step{display:flex;gap:14px;padding:18px;background:var(--parch);border-radius:14px;margin-bottom:14px}
+.step-n{width:28px;height:28px;background:var(--tg);color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.step p,.step li{font-size:14px;color:var(--muted);line-height:1.65}
+.step ul{padding-left:16px;margin-top:6px}
+.step li{margin-bottom:4px}
+
+/* CARD */
+.card{background:var(--parch);border-radius:16px;padding:22px;margin-bottom:14px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card p,.card li{font-size:14px;color:var(--muted);line-height:1.7}
+.card ul,.card ol{padding-left:18px;margin-top:8px}
+.card li{margin-bottom:5px}
+
+/* TIP/WARN */
+.tip{border-radius:12px;padding:14px 16px;margin:12px 0;display:flex;gap:10px;align-items:flex-start}
+.tip.warn{background:rgba(255,149,0,.08);border-left:3px solid var(--warn)}
+.tip.info{background:rgba(42,171,238,.06);border-left:3px solid var(--tg)}
+.tip .ico{font-size:18px;flex-shrink:0}
+.tip p{font-size:13px;color:var(--muted)}
+.tip strong{color:var(--ink)}
+
+/* CTA */
+.cta{background:var(--tile1);border-radius:20px;padding:28px 22px;margin:32px 0;text-align:center}
+.cta .tag{display:inline-block;background:var(--tg);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;padding:4px 12px;border-radius:9999px;margin-bottom:12px;text-transform:uppercase}
+.cta h3{color:#fff;font-size:18px;font-weight:700;margin-bottom:8px}
+.cta p{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tg);color:#fff;font-weight:600;font-size:14px;padding:12px 26px;border-radius:9999px;text-decoration:none;margin:4px;transition:transform .15s}
+.cta-btn:active{transform:scale(.95)}
+.cta-btn.green{background:var(--green)}
+.cta-btn.blue{background:var(--blue)}
+
+/* DOWNLOAD GRID */
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
+.dl-card{background:var(--canvas);border:1px solid #e0e0e0;border-radius:14px;padding:18px;text-align:center;transition:transform .15s}
+.dl-card:active{transform:scale(.95)}
+.dl-card .os-icon{font-size:32px;margin-bottom:8px}
+.dl-card h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.dl-card p{font-size:12px;color:var(--muted)}
+.dl-card a{display:inline-block;margin-top:10px;background:var(--tg);color:#fff;font-size:12px;font-weight:600;padding:8px 18px;border-radius:9999px;text-decoration:none;transition:transform .15s}
+.dl-card a:active{transform:scale(.95)}
+
+/* FEATURE GRID */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:14px}
+.feat{background:var(--canvas);border:1px solid #e0e0e0;border-radius:14px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.feat .f-ico{font-size:24px;flex-shrink:0}
+.feat h4{font-size:14px;font-weight:700;margin-bottom:3px}
+.feat p{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill{background:rgba(42,171,238,.08);border:1px solid rgba(42,171,238,.2);color:var(--tg);font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 12px;border-radius:9999px}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,#e0e0e0,transparent);margin:40px 0}
+
+/* FOOTER */
+.site-footer{background:var(--parch);border-top:1px solid #e0e0e0;padding:40px 24px;text-align:center;margin-top:56px}
+.site-footer .brand{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.site-footer p{font-size:13px;color:var(--muted);margin-bottom:12px}
+.site-footer .tagline{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:2px;text-transform:uppercase}
+.site-footer .links{margin-top:16px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.site-footer .links a{color:var(--blue);font-size:12px;text-decoration:none}
+
+.hl{color:var(--tg);font-weight:600}
+.hl2{color:var(--green);font-weight:600}
+
+@media(max-width:600px){
+.hero{padding:56px 18px 40px}
+.section-head,.step,.card{padding:16px}
+.site-header nav a{font-size:11px;margin-left:12px}
+.dl-grid{grid-template-columns:1fr}
+.feat-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+<a href="/" class="logo">techfireco</a>
+<nav>
+<a href="/">Home</a>
+<a href="https://www.instagram.com/techfireco/" target="_blank">Instagram</a>
+<a href="https://wa.openinapp.link/w4nm0" target="_blank">WhatsApp</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-badge">Free &amp; Open Source</div>
+<h1><span>Unlimited</span><br>Telegram Storage</h1>
+<p>Turn your Telegram account into a free, unlimited cloud drive. Upload any file, stream videos, and organize everything — on any computer.</p>
+<div class="byline">@techfireco</div>
+</div>
+
+<div class="container">
+
+<!-- INTRO CARD -->
+<div class="card" style="margin-top:32px">
+<h3>💬 Wait, Telegram Has Unlimited Storage?</h3>
+<p>Yes! Telegram gives every user <strong>unlimited cloud storage</strong> for free. You can upload files up to <strong>4 GB each</strong> — photos, videos, documents, anything. The problem? Telegram's app isn't built to manage large file collections.</p>
+<p style="margin-top:8px">That's where <strong>Telegram Drive</strong> comes in. It's a free, open-source desktop app that turns your Telegram account into a proper cloud drive — like Google Drive, but with <strong>no storage limits and no monthly fees</strong>.</p>
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+<div class="section-head">
+<div class="section-num">✨</div>
+<div><h2>Why Telegram Drive?</h2><p class="sub">Here's what makes it special</p></div>
+</div>
+
+<div class="feat-grid">
+<div class="feat"><div class="f-ico">♾️</div><div><h4>Unlimited Storage</h4><p>Upload as much as you want. No caps, no fees. Telegram's cloud handles it all.</p></div></div>
+<div class="feat"><div class="f-ico">📂</div><div><h4>Folder Management</h4><p>Create folders to organize your files — just like a regular file explorer.</p></div></div>
+<div class="feat"><div class="f-ico">🎬</div><div><h4>Stream Videos</h4><p>Watch your uploaded videos directly without downloading them first.</p></div></div>
+<div class="feat"><div class="f-ico">📄</div><div><h4>Built-in PDF Viewer</h4><p>Read PDF documents right inside the app with smooth scrolling.</p></div></div>
+<div class="feat"><div class="f-ico">🖱️</div><div><h4>Drag &amp; Drop Upload</h4><p>Just drag files into the window. That's it. They upload to Telegram instantly.</p></div></div>
+<div class="feat"><div class="f-ico">🔒</div><div><h4>Privacy First</h4><p>Your API keys and data stay on your computer. No third-party servers involved.</p></div></div>
+<div class="feat"><div class="f-ico">🖥️</div><div><h4>Cross-Platform</h4><p>Works on Windows, Mac (Intel + Apple Silicon), and Linux.</p></div></div>
+<div class="feat"><div class="f-ico">🖼️</div><div><h4>Thumbnail Previews</h4><p>See image and video thumbnails so you know exactly what each file is.</p></div></div>
+</div>
+</div>
+
+<!-- DOWNLOAD -->
+<div class="section">
+<div class="section-head">
+<div class="section-num">01</div>
+<div><h2>Download Telegram Drive 📥</h2><p class="sub">Get the latest version (v1.1.6) for your OS</p></div>
+</div>
+
+<div class="dl-grid">
+<div class="dl-card">
+<div class="os-icon">🪟</div>
+<h4>Windows</h4>
+<p>.exe installer</p>
+<a href="https://github.com/caamer20/Telegram-Drive/releases/tag/v1.1.6" target="_blank">Download</a>
+</div>
+<div class="dl-card">
+<div class="os-icon">🍎</div>
+<h4>macOS</h4>
+<p>Intel &amp; Apple Silicon</p>
+<a href="https://github.com/caamer20/Telegram-Drive/releases/tag/v1.1.6" target="_blank">Download</a>
+</div>
+<div class="dl-card">
+<div class="os-icon">🐧</div>
+<h4>Linux</h4>
+<p>.deb / .AppImage</p>
+<a href="https://github.com/caamer20/Telegram-Drive/releases/tag/v1.1.6" target="_blank">Download</a>
+</div>
+</div>
+
+<div class="tip info" style="margin-top:14px">
+<div class="ico">💡</div>
+<p>Go to the <strong>releases page</strong>, scroll down to <strong>"Assets"</strong>, and download the file that matches your operating system.</p>
+</div>
+</div>
+
+<!-- GET API KEYS -->
+<div class="section">
+<div class="section-head">
+<div class="section-num">02</div>
+<div><h2>Get Your Telegram API Keys 🔑</h2><p class="sub">You'll need these to connect the app to your account</p></div>
+</div>
+
+<div class="step">
+<div class="step-n">1</div>
+<div>
+<h4>Open my.telegram.org</h4>
+<p>Go to <span class="hl">my.telegram.org</span> in your browser and log in with your phone number.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">2</div>
+<div>
+<h4>Click "API Development Tools"</h4>
+<p>After logging in, you'll see a page with a few options. Click on <strong>API development tools</strong>.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">3</div>
+<div>
+<h4>Fill the Form</h4>
+<p>Enter any app name (e.g. "My Drive") and a short description. The platform can be <strong>Desktop</strong>. Then click <strong>Create</strong>.</p>
+<div class="tip info">
+<div class="ico">📝</div>
+<p>You can write anything here — it doesn't affect the app. Just fill in the required fields and submit.</p>
+</div>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">4</div>
+<div>
+<h4>Copy Your API ID &amp; API Hash</h4>
+<p>You'll now see your <span class="hl">API ID</span> (a number) and <span class="hl">API Hash</span> (a long code). <strong>Copy both</strong> — you'll paste them into Telegram Drive next.</p>
+<div class="tip warn">
+<div class="ico">⚠️</div>
+<p><strong>Keep these private.</strong> Never share your API ID and Hash with anyone. They give access to your Telegram account.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SET UP THE APP -->
+<div class="section">
+<div class="section-head">
+<div class="section-num">03</div>
+<div><h2>Set Up Telegram Drive 🚀</h2><p class="sub">Connect the app to your Telegram account</p></div>
+</div>
+
+<div class="step">
+<div class="step-n">1</div>
+<div>
+<h4>Install &amp; Open the App</h4>
+<p>Run the installer you downloaded earlier. Once it's installed, open <strong>Telegram Drive</strong>.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">2</div>
+<div>
+<h4>Enter Your API Credentials</h4>
+<p>The app will ask for your <span class="hl">API ID</span> and <span class="hl">API Hash</span>. Paste the ones you copied from my.telegram.org.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">3</div>
+<div>
+<h4>Log In with Your Phone Number</h4>
+<p>Enter your Telegram phone number. You'll get a <strong>verification code</strong> on your Telegram app — type it in.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-n">4</div>
+<div>
+<h4>You're In! 🎉</h4>
+<p>That's it. You now have a full cloud drive powered by Telegram. Start uploading files, creating folders, and streaming videos.</p>
+<div class="tip info">
+<div class="ico">✅</div>
+<p>Your files are stored in your Telegram account (as "Saved Messages" or private channels). You can access them from any device with Telegram too.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<div class="card">
+<h3>🧠 How Does It Actually Work?</h3>
+<p>Here's the simple version:</p>
+<ul>
+<li>Telegram gives you <strong>unlimited cloud storage</strong> — every account gets it for free.</li>
+<li>Each file can be up to <strong>4 GB</strong> in size.</li>
+<li>Telegram Drive uses your account's <strong>"Saved Messages"</strong> and <strong>private channels</strong> as storage folders.</li>
+<li>The app connects to Telegram's servers using the official API — so it's fast, secure, and reliable.</li>
+<li>Your files are <strong>encrypted</strong> by Telegram and stored on their servers worldwide.</li>
+</ul>
+<p style="margin-top:10px">Think of it like this: Telegram is the storage, and Telegram Drive is the file manager that makes it easy to use.</p>
+</div>
+
+<!-- TIPS -->
+<div class="card">
+<h3>💡 Pro Tips</h3>
+<ul>
+<li><strong>Create separate folders</strong> for photos, videos, documents, etc. — keeps things clean.</li>
+<li><strong>Use drag &amp; drop</strong> to upload multiple files at once.</li>
+<li><strong>Stream before downloading</strong> — save disk space by watching videos directly in the app.</li>
+<li><strong>Works alongside Telegram</strong> — your regular Telegram chats are not affected at all.</li>
+<li><strong>Back up important files</strong> — since Telegram syncs across devices, your files are always accessible.</li>
+</ul>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+<div class="section-head">
+<div class="section-num">?</div>
+<div><h2>Common Questions</h2><p class="sub">Quick answers to things people usually ask</p></div>
+</div>
+
+<div class="card">
+<h3>Is it really free?</h3>
+<p>Yes, 100% free. Telegram Drive is open-source and Telegram's storage is free. No hidden charges.</p>
+</div>
+
+<div class="card">
+<h3>Is it safe?</h3>
+<p>Yes. The app runs on your computer and connects directly to Telegram. No data goes through any third-party server. Your API keys stay local on your machine.</p>
+</div>
+
+<div class="card">
+<h3>Will my Telegram chats be affected?</h3>
+<p>No. Telegram Drive uses "Saved Messages" and private channels — your personal and group chats stay completely separate.</p>
+</div>
+
+<div class="card">
+<h3>What file types can I upload?</h3>
+<p>Anything — photos, videos, PDFs, ZIPs, code, music. Any file type works, as long as each file is under 4 GB.</p>
+</div>
+
+<div class="card">
+<h3>Does it work on Mac with Apple Silicon (M1/M2/M3)?</h3>
+<p>Yes! There are separate downloads for Intel and Apple Silicon Macs. Pick the one that matches your chip.</p>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TECH STACK -->
+<div class="card">
+<h3>🛠️ Built With</h3>
+<div class="pills">
+<span class="pill">React</span>
+<span class="pill">TypeScript</span>
+<span class="pill">Rust</span>
+<span class="pill">Tauri</span>
+<span class="pill">Vite</span>
+<span class="pill">Open Source</span>
+<span class="pill">MIT License</span>
+</div>
+<p style="margin-top:12px">Source code: <a href="https://github.com/caamer20/Telegram-Drive" target="_blank" style="color:var(--tg);font-weight:600">github.com/caamer20/Telegram-Drive</a></p>
+</div>
+
+<!-- FINAL CTA -->
+<div class="cta" style="margin-bottom:0">
+<div class="tag">🎯 @techfireco</div>
+<h3>Get Unlimited Cloud Storage Today!</h3>
+<p>Stop paying for Google Drive, iCloud, or Dropbox. Telegram Drive gives you<br><strong style="color:#fff">unlimited storage for free</strong> — and it takes 5 minutes to set up.<br><br>
+✅ Free Forever &nbsp;✅ No Storage Limits &nbsp;✅ Works on All Computers<br><br>
+<strong style="color:#fff">Follow us for more tech guides!</strong></p>
+<a class="cta-btn" href="https://github.com/caamer20/Telegram-Drive/releases/tag/v1.1.6" target="_blank">📥 Download Telegram Drive</a>
+<a class="cta-btn green" href="https://www.instagram.com/techfireco/" target="_blank">📩 Follow @techfireco</a>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+<div class="brand">techfireco</div>
+<p>Tech content that actually makes sense 🔥<br>Follow us for more guides like this!</p>
+<div class="tagline">@techfireco • Instagram • WhatsApp Channel</div>
+<div class="links">
+<a href="/">Home</a>
+<a href="https://www.instagram.com/techfireco/" target="_blank">Instagram</a>
+<a href="https://wa.openinapp.link/w4nm0" target="_blank">WhatsApp</a>
+<a href="mailto:techfirebiz@gmail.com">Email</a>
+</div>
+<p style="margin-top:16px;font-size:11px;color:#86868b">© 2026 TechFireCo. All rights reserved. This page is not affiliated with Telegram FZ-LLC.</p>
+</footer>
+
+</body>
+</html>
